@@ -1,0 +1,44 @@
+﻿@model AboutNumbersVM
+
+@section Header {
+     About Numbers 
+}
+
+<div class="about-numbers">
+    <div>
+        <h3>@Model.HappyClients</h3>
+        <p>Happy Clients</p>
+        <form asp-controller="AboutNumbers" asp-action="Increment" >
+            <input type="hidden" name="id" value="@Model.Id" />
+            <input type="hidden" name="field" value="happyclients" />
+            <button type="submit">+</button>
+        </form>
+    </div>
+    <div>
+        <h3>@Model.Projects</h3>
+        <p>Projects</p>
+        <form asp-controller="AboutNumbers" asp-action="Increment" >
+            <input type="hidden" name="id" value="@Model.Id" />
+            <input type="hidden" name="field" value="projects" />
+            <button type="submit">+</button>
+        </form>
+    </div>
+    <div>
+        <h3>@Model.HoursOfSupport</h3>
+        <p>Hours Of Support</p>
+        <form asp-controller="AboutNumbers" asp-action="Increment" >
+            <input type="hidden" name="id" value="@Model.Id" />
+            <input type="hidden" name="field" value="hoursofsupport" />
+            <button type="submit">+</button>
+        </form>
+    </div>
+    <div>
+        <h3>@Model.HardWorkers</h3>
+        <p>Hard Workers</p>
+        <form asp-controller="AboutNumbers" asp-action="Increment" >
+            <input type="hidden" name="id" value="@Model.Id" />
+            <input type="hidden" name="field" value="hardworkers" />
+            <button type="submit">+</button>
+        </form>
+    </div>
+</div>

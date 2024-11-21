@@ -1,0 +1,77 @@
+﻿@model ItemFormVM
+
+@section Header {
+     Items
+}
+
+<div class="col-md-12">
+
+
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Create</h3>
+        </div>
+
+
+        <form asp-controller="Items" asp-action="Create" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="Name">Item name</label>
+                    <input asp-for="Name" class="form-control" placeholder="Enter the neme">
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="PortfolioId">Select Portfolio</label>
+                    <select asp-for="PortfolioId" class="form-control" asp-items="@Model.Portfolios">
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="Description">Item Description</label>
+                    <input asp-for="Description" class="form-control textarea" placeholder="Enter the Description">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Image"></label>
+                    <input asp-for="Image" class="form-control-file imageInput" />
+                </div>
+
+                <div class="form-group">
+                    <img src="#" id="imagePreview" style="display: none;" width="80px" />
+                </div>
+
+
+
+
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="https://cdn.tiny.cloud/1/vi55yhuz399eu4daqrnjdj5h8kie6w4s5nrmyiavci7xu7mv/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+
+@section scripts{
+    <script>
+         tinymce.init({
+        selector: '.textarea'
+      });
+        document.querySelector(".imageInput").addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            const imagePreview = document.querySelector("#imagePreview");
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+}

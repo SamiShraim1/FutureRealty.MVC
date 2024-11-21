@@ -1,0 +1,20 @@
+﻿@model ItemDetailsVM
+
+@section Header {
+    Service Details
+}
+
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Details for @Model.Name</h3>
+        </div>
+        <ul>
+            <li> Description : @Html.Raw(Model.Description) </li>
+            <li> Status : @(Model.IsDeleted ? "Not Active" : "Active")</li>
+            <li> PortfolioName : @Model.PortfolioName </li>
+            <li> Created : @Model.CreatedAt </li>
+            <li> image:<img src="~/Files/images/@Model.ImageName" width="50px" /> </li>
+        </ul>
+    </div>
+</div>

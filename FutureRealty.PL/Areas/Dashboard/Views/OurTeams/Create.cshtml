@@ -1,0 +1,64 @@
+﻿@model OurTeamFormVM
+
+@section Header {
+     Our Team
+}
+
+<div class="col-md-12">
+
+
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Create</h3>
+        </div>
+
+
+        <form asp-controller="OurTeams" asp-action="Create" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="Name">employee name</label>
+                    <input asp-for="Name" class="form-control" placeholder="Enter the neme">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Info">employee name</label>
+                    <input asp-for="Info" class="form-control" placeholder="Enter the neme">
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Image"></label>
+                    <input asp-for="Image" class="form-control-file imageInput" />
+                </div>
+
+                <div class="form-group">
+                    <img src="#" id="imagePreview" style="display: none;" width="80px" />
+                </div>
+
+
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        document.querySelector(".imageInput").addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            const imagePreview = document.querySelector("#imagePreview");
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
+}

@@ -1,0 +1,20 @@
+﻿@model PortfoliosVM
+
+@section Header {
+    Delete Portfolio
+}
+<div>
+<p>Portfolio Name: @Model.Name</p>
+<br>
+<p>You must delete all associated items before deleting this portfolio.</p>
+<br>
+
+
+<h3>Associated Items:</h3>
+<ul>
+    @foreach (var item in Model.Items)
+    {
+        <li>"@item.Name "</li> 
+    }
+</ul>
+</div>

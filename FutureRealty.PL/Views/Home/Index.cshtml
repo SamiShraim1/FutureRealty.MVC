@@ -1,0 +1,535 @@
+﻿@model HomePageViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<section id="hero" class="hero section light-background">
+
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
+                <h1>Welcome to <span>Future</span></h1>
+                <p>We are here to provide services in the world of information technology.</p>
+                <div class="d-flex">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section><!-- /Hero Section -->
+<section id="featured-services" class="featured-services section">
+
+    <div class="container">
+
+        <div class="row gy-4">
+            @{
+    
+    var icons = new[] { "bi bi-activity", "bi bi-bounding-box-circles", "bi bi-calendar4-week", "bi bi-broadcast" };
+    int delay = 100;
+    int index = 0;
+    int displayedCount = 0;
+}
+
+@foreach (var service in Model.Services)
+{
+                if (displayedCount >= 4)
+                {
+                    break; 
+                }
+    <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="@delay">
+        <div class="service-item position-relative">
+            <div class="icon"><i class="@icons[index] icon"></i></div>
+                        <h4><a asp-controller="Home" asp-action="ServiceDetails" class="stretched-link">@service.Name</a></h4>
+           <p>@Html.Raw(service.Description)</p>
+        </div>
+    </div>
+                delay += 100;
+                index = (index + 1) % icons.Length;
+                displayedCount++;
+}
+        </div>
+
+    </div>
+
+
+
+
+    <section id="about" class="about section light-background">
+    <div class="container section-title" data-aos="fade-up">
+        <h2>About</h2>
+        <p><span>Find Out More</span> <span class="description-title">About Us</span></p>
+    </div>
+
+    <div class="container">
+        <div class="row gy-3">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <img src="~/assets/img/about.jpg" alt="" class="img-fluid">
+            </div>
+            <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="about-content ps-0 ps-lg-3">
+                        <h3>Providing Quality and Excellence in Our Services</h3>
+                        <p class="fst-italic">
+                            We are dedicated to delivering top-notch services across various domains including design, development, and content management.
+                        </p>
+                        <ul>
+                            <li>
+                                <i class="bi bi-diagram-3"></i>
+                                <div>
+                                    <h4>Professional Web Design</h4>
+                                    <p>We offer professional web design solutions that help make your website stand out on the internet.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="bi bi-fullscreen-exit"></i>
+                                <div>
+                                    <h4>Advanced Content Management</h4>
+                                    <p>Our content management service ensures clients' needs are met and provides an excellent user experience.</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <p>
+                            Our goal is to achieve excellence by providing innovative and reliable services across all fields. We aim to enhance our clients' digital presence through our diverse expertise.
+                        </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats section">
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row gy-4">
+
+                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                    <i class="bi bi-emoji-smile"></i>
+                    <div class="stats-item">
+                        <span data-purecounter-start="0" data-purecounter-end="@Model.AboutNumbers[0].HappyClients" data-purecounter-duration="1" class="purecounter"></span>
+                        <p>Happy Clients</p>
+                    </div>
+                </div><!-- End Stats Item -->
+
+                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                    <i class="bi bi-journal-richtext"></i>
+                    <div class="stats-item">
+                        <span data-purecounter-start="0" data-purecounter-end="@Model.AboutNumbers[0].Projects" data-purecounter-duration="1" class="purecounter"></span>
+                        <p>Projects</p>
+                    </div>
+                </div><!-- End Stats Item -->
+
+                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                    <i class="bi bi-headset"></i>
+                    <div class="stats-item">
+                        <span data-purecounter-start="0" data-purecounter-end="@Model.AboutNumbers[0].HoursOfSupport" data-purecounter-duration="1" class="purecounter"></span>
+                        <p>Hours Of Support</p>
+                    </div>
+                </div><!-- End Stats Item -->
+
+                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                    <i class="bi bi-people"></i>
+                    <div class="stats-item">
+                        <span data-purecounter-start="0" data-purecounter-end="@Model.AboutNumbers[0].HardWorkers" data-purecounter-duration="1" class="purecounter"></span>
+                        <p>Hard Workers</p>
+                    </div>
+                </div><!-- End Stats Item -->
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section id="clients" class="clients section light-background">
+
+        <div class="container">
+
+            <div class="swiper init-swiper">
+                <script type="application/json" class="swiper-config">
+                    {
+                      "loop": true,
+                      "speed": 600,
+                      "autoplay": {
+                        "delay": 5000
+                      },
+                      "slidesPerView": "auto",
+                      "pagination": {
+                        "el": ".swiper-pagination",
+                        "type": "bullets",
+                        "clickable": true
+                      },
+                      "breakpoints": {
+                        "320": {
+                          "slidesPerView": 2,
+                          "spaceBetween": 40
+                        },
+                        "480": {
+                          "slidesPerView": 3,
+                          "spaceBetween": 60
+                        },
+                        "640": {
+                          "slidesPerView": 4,
+                          "spaceBetween": 80
+                        },
+                        "992": {
+                          "slidesPerView": 6,
+                          "spaceBetween": 120
+                        }
+                      }
+                    }
+                </script>
+                <div class="swiper-wrapper align-items-center">
+                    <div class="swiper-slide"><img src="~/assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="~/assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="~/assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="~/assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="~/assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="~/assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="~/assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
+                    <div class="swiper-slide"><img src="~/assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="services" class="services section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Services</h2>
+            <p><span>Check Our</span> <span class="description-title">Services</span></p>
+        </div><!-- End Section Title -->
+
+        <div class="container">
+            <div class="row gy-4">
+                @{
+                    // قائمة الأيقونات الثابتة
+                    var icons1 = new[] { "bi bi-activity", "bi bi-broadcast", "bi bi-easel", "bi bi-bounding-box-circles", "bi bi-calendar4-week", "bi bi-chat-square-text" };
+                    int delay2 = 100; // بدء التأخير من 100 مللي ثانية
+                    int iconIndex = 0; // مؤشر الأيقونة
+                }
+
+                @foreach (var service in Model.Services)
+                {
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="@delay">
+                        <div class="service-item position-relative">
+                            <div class="icon">
+                                <i class="@icons1[iconIndex]"></i>
+                            </div>
+                            <a asp-controller="Home" asp-action="ServiceDetails" class="stretched-link">
+                                <h3>@service.Name</h3>
+                            </a>
+                            <p>@Html.Raw(service.Description)</p>
+                        </div>
+                    </div>
+
+
+                    @* زيادة التأخير لكل خدمة بمقدار 100 مللي ثانية *@
+                    delay2 += 100;
+
+                  
+                    iconIndex = (iconIndex + 1) % icons1.Length;
+                }
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+
+    <section id="portfolio" class="portfolio section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Portfolio</h2>
+            <p><span>Check Our&nbsp;</span> <span class="description-title">Portfolio</span></p>
+        </div><!-- End Section Title -->
+
+        <div class="container">
+            <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+                <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+                    <li data-filter="*" class="filter-active">All</li>
+                    <!-- Filters based on portfolio names -->
+                    @foreach (var portfolio in Model.Portfolios)
+                    {
+                        <li data-filter=".filter-@portfolio.PortfolioName.ToLower().Replace(" ", "-")">@portfolio.PortfolioName</li>
+                    }
+                </ul><!-- End Portfolio Filters -->
+
+                <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+                    @foreach (var portfolio in Model.Portfolios)
+                    {
+                        var categoryClass = "filter-" + portfolio.PortfolioName.ToLower().Replace(" ", "-");
+
+                        @foreach (var item in portfolio.Items)
+                        {
+                            <div class="col-lg-4 col-md-6 portfolio-item isotope-item @categoryClass">
+                                <img src="~/Files/images/@item.ImageName" class="img-fluid" alt="@item.Name">
+                                <div class="portfolio-info">
+                                    <h4>@item.Name</h4>
+                                    <p>@Html.Raw(item.Description)</p>
+                                    <a href="~/Files/images/@item.ImageName" title="@item.Name" data-gallery="portfolio-gallery-@categoryClass" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                    <a asp-controller="Home" asp-action="PortfolioDetails" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                                </div>
+                            </div>
+
+                            <!-- End Portfolio Item -->
+                        }
+                    }
+                </div><!-- End Portfolio Container -->
+            </div>
+        </div>
+    </section>
+
+
+
+
+<section id="team" class="team section light-background">
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Team</h2>
+        <p><span>Our Hardworking</span> <span class="description-title">Team</span></p>
+    </div>
+
+
+
+    <div class="container">
+        <div class="row gy-4">
+            @foreach (var teamMember in Model.OurTeams)
+            {
+                <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+                    <div class="team-member">
+                        <div class="member-img">
+                                <img src="~/Files/images/@teamMember.ImageName" width="600px" height="500px" class="img-fluid" alt="@teamMember.Name">
+                            <div class="social">
+                                <a href="@teamMember.TwitterLink"><i class="bi bi-twitter"></i></a>
+                                <a href="@teamMember.FacebookLink"><i class="bi bi-facebook"></i></a>
+                                <a href="@teamMember.linkedinLink"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h4>@teamMember.Name</h4>
+                            <span>@teamMember.Info</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+    <section id="faq" class="faq section light-background">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>F.A.Q</h2>
+            <p><span>Frequently Asked</span> <span class="description-title">Questions</span></p>
+        </div><!-- End Section Title -->
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+
+                    <div class="faq-container">
+
+                        <div class="faq-item faq-active">
+                            <h3>Non consectetur a erat nam at lectus urna duis?</h3>
+                            <div class="faq-content">
+                                <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                        <div class="faq-item">
+                            <h3>Feugiat scelerisque varius morbi enim nunc faucibus?</h3>
+                            <div class="faq-content">
+                                <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                        <div class="faq-item">
+                            <h3>Dolor sit amet consectetur adipiscing elit pellentesque?</h3>
+                            <div class="faq-content">
+                                <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                        <div class="faq-item">
+                            <h3>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</h3>
+                            <div class="faq-content">
+                                <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                        <div class="faq-item">
+                            <h3>Tempus quam pellentesque nec nam aliquam sem et tortor?</h3>
+                            <div class="faq-content">
+                                <p>Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                        <div class="faq-item">
+                            <h3>Perspiciatis quod quo quos nulla quo illum ullam?</h3>
+                            <div class="faq-content">
+                                <p>Enim ea facilis quaerat voluptas quidem et dolorem. Quis et consequatur non sed in suscipit sequi. Distinctio ipsam dolore et.</p>
+                            </div>
+                            <i class="faq-toggle bi bi-chevron-right"></i>
+                        </div><!-- End Faq item-->
+
+                    </div>
+
+                </div><!-- End Faq Column-->
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section id="contact" class="contact section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Contact</h2>
+            <p><span>Need Help?</span> <span class="description-title">Contact Us</span></p>
+        </div><!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row gy-4">
+
+                <div class="col-lg-5">
+
+                    <div class="info-wrap">
+                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+                            <i class="bi bi-geo-alt flex-shrink-0"></i>
+                            <div>
+                                <h3>Address</h3>
+                                <p>A108 Adam Street, New York, NY 535022</p>
+                            </div>
+                        </div><!-- End Info Item -->
+
+                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                            <i class="bi bi-telephone flex-shrink-0"></i>
+                            <div>
+                                <h3>Call Us</h3>
+                                <p>+1 5589 55488 55</p>
+                            </div>
+                        </div><!-- End Info Item -->
+
+                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                            <i class="bi bi-envelope flex-shrink-0"></i>
+                            <div>
+                                <h3>Email Us</h3>
+                                <p>info@example.com</p>
+                            </div>
+                        </div><!-- End Info Item -->
+
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+
+
+                    <form id="contactForm" asp-area="Dashboard" asp-controller="ContactMessages" asp-action="Submit">
+                        @Html.AntiForgeryToken()
+                        <div class="row gy-4">
+                            <div class="col-md-6">
+                                <label asp-for="ContactMessagesVM.Name" class="form-label">Name</label>
+                                <input asp-for="ContactMessagesVM.Name" class="form-control" />
+                                <span asp-validation-for="ContactMessagesVM.Name" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="ContactMessagesVM.Email" class="form-label">Email</label>
+                                <input asp-for="ContactMessagesVM.Email" class="form-control" />
+                                <span asp-validation-for="ContactMessagesVM.Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label asp-for="ContactMessagesVM.Subject" class="form-label">Subject</label>
+                                <input asp-for="ContactMessagesVM.Subject" class="form-control" />
+                                <span asp-validation-for="ContactMessagesVM.Subject" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label asp-for="ContactMessagesVM.Message" class="form-label">Message</label>
+                                <textarea asp-for="ContactMessagesVM.Message" class="form-control" rows="10"></textarea>
+                                <span asp-validation-for="ContactMessagesVM.Message" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12 text-center">
+                                <button type="button" class="btn btn-primary" onclick="submitContactForm()">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div><!-- End Contact Form -->
+
+            </div>
+
+        </div>
+
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        async function submitContactForm() {
+            const form = document.getElementById("contactForm");
+            const formData = new FormData(form);
+
+            const csrfToken = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'RequestVerificationToken': csrfToken,
+                    },
+                    body: formData,
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    Swal.fire({
+                        title: "Success!",
+                        text: data.message,
+                        icon: "success"
+                    });
+                    form.reset();
+                } else {
+                    Swal.fire({
+                        title: "Failed",
+                        text: data.message,
+                        icon: "error"
+                    });
+                }
+            } catch (error) {
+                Swal.fire({
+                    title: "Error",
+                    text: "An error occurred while submitting the form.",
+                    icon: "error"
+                });
+            }
+        }
+    </script>

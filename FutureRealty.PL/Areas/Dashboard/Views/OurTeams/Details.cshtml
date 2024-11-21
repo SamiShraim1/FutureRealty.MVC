@@ -1,0 +1,17 @@
+﻿@model OurTeamDetailsVM
+
+@section Header {
+     employee Info
+}
+
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Details for @Model.Name</h3>
+        </div>
+        <ul>
+            <li>Info :@Model.Info</li>
+            <li> image:<img src="~/Files/images/@Model.ImageName" width="50px" /> </li>
+        </ul>
+    </div>
+</div>
